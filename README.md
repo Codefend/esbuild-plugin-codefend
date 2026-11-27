@@ -12,7 +12,7 @@
 
 esbuild plugin for code obfuscation based on [Codefend](https://www.npmjs.com/package/codefend).
 
-Supports esbuild 0.25.12 and newer within esbuild 0.25, 0.26, 0.27, and 0.28. Requires Node.js 18 or newer.
+Supports esbuild 0.25.12 and newer within esbuild 0.25, 0.26, 0.27, and 0.28. The plugin requires Node.js 18 or newer.
 
 ## Installation
 
@@ -78,7 +78,7 @@ await build({
 
 `transformation.ignore` contains words to preserve, not file paths or module filters. Statistics are enabled by default; use `debug: { stats: false }` to disable them.
 
-The plugins use Codefend's `codeOnly` parser. CLI options for copying source files, renaming files and folders, and selecting custom parsers are not exposed. See the [configuration reference](https://codefend.github.io/docs/references/configuration) for transformation details.
+The plugin uses Codefend's `codeOnly` parser. CLI options for copying source files, renaming files and folders, and selecting custom parsers are not exposed. See the [configuration reference](https://codefend.github.io/docs/references/configuration) for transformation details.
 
 ### Naming convention
 
