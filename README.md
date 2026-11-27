@@ -8,7 +8,7 @@
 ![NPM](https://img.shields.io/npm/dt/esbuild-plugin-codefend)
 [![npm unpacked size](https://img.shields.io/npm/unpacked-size/esbuild-plugin-codefend)](https://www.npmjs.com/package/esbuild-plugin-codefend)
 ![NPM](https://img.shields.io/node/v/esbuild-plugin-codefend)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE.md)
+![NPM](https://img.shields.io/npm/l/esbuild-plugin-codefend)
 
 esbuild plugin for code obfuscation based on [Codefend](https://www.npmjs.com/package/codefend).
 
