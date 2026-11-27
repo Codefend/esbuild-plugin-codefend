@@ -128,11 +128,12 @@ node build.mjs
 
 ## Examples
 
-The configuration and naming examples above demonstrate a minimal esbuild integration. See the [documentation examples](https://codefend.github.io/docs/examples/list) for complete Codefend language and build workflows.
+Follow the [esbuild example](https://codefend.github.io/docs/examples/esbuild) for complete source code, configuration, build commands, and expected output.
 
 ## Documentation
 
 - [Codefend documentation](https://codefend.github.io/docs/)
+- [esbuild build guide](https://codefend.github.io/docs/examples/esbuild)
 - [All language and build examples](https://codefend.github.io/docs/examples/list)
 - [Vite plugin](https://www.npmjs.com/package/vite-plugin-codefend), [Rollup plugin](https://www.npmjs.com/package/rollup-plugin-codefend), and [Webpack plugin](https://www.npmjs.com/package/webpack-plugin-codefend)
 
