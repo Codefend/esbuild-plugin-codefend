@@ -112,13 +112,9 @@ Use the [AI migration prompt](https://codefend.github.io/docs/basic-usage/naming
 
 ## Build behavior
 
-The plugin uses esbuild's `onLoad` hook to transform JavaScript and TypeScript file modules before esbuild compiles, bundles, or minifies them. It supports `.js`, `.mjs`, `.cjs`, `.jsx`, `.ts`, `.mts`, `.cts`, and `.tsx`, and honors custom extensions and loader overrides configured through esbuild's `loader` option. CSS, JSON, text, and binary loaders retain their normal behavior.
+The plugin transforms JavaScript and TypeScript file modules during esbuild's `onLoad` hook, before compilation, bundling, or minification, and prints statistics when a build succeeds. It runs whenever included in the configuration, including rebuilds and watch mode.
 
-One mapping is shared across modules within each build. Rebuilds start with fresh mappings and statistics, and independent build contexts keep their own state. Pool names already assigned to one module are reserved for that build.
-
-Use file entry points. The plugin rejects `stdin` builds because esbuild does not pass their source through file-loading hooks. esbuild runs loading callbacks until one returns contents, so files supplied by another plugin's loader and virtual modules are not transformed by this plugin. See esbuild's [plugin API](https://esbuild.github.io/plugins/#on-load-callbacks) for loading behavior.
-
-The plugin runs whenever included, including rebuilds and watch mode. Include it conditionally in your build script to keep development output unchanged. Plugins require esbuild's asynchronous JavaScript build API; the CLI, `buildSync`, and `transform` API cannot load plugins. Codefend does not provide a separate obfuscation source map, HTML transformation, or CSS transformation step.
+For development builds, include the plugin conditionally in your build script if you want to leave development output unchanged. Use file entry points with esbuild's asynchronous JavaScript build API. `stdin` input is not supported, and virtual modules or files supplied by another plugin's loader are not transformed. See the [esbuild guide](https://codefend.github.io/docs/examples/esbuild) for supported extensions, loader settings, asset behavior, and source map limitations.
 
 Build with your usual project command, or run:
 
@@ -128,12 +124,11 @@ node build.mjs
 
 ## Examples
 
-Follow the [esbuild example](https://codefend.github.io/docs/examples/esbuild) for complete source code, configuration, build commands, and expected output.
+Follow the [esbuild example](https://codefend.github.io/docs/examples/esbuild) in the Codefend documentation for complete source code, configuration, build commands, and expected output.
 
 ## Documentation
 
 - [Codefend documentation](https://codefend.github.io/docs/)
-- [esbuild build guide](https://codefend.github.io/docs/examples/esbuild)
 - [All language and build examples](https://codefend.github.io/docs/examples/list)
 - [Vite plugin](https://www.npmjs.com/package/vite-plugin-codefend), [Rollup plugin](https://www.npmjs.com/package/rollup-plugin-codefend), and [Webpack plugin](https://www.npmjs.com/package/webpack-plugin-codefend)
 
