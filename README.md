@@ -12,7 +12,7 @@
 
 esbuild plugin for code obfuscation based on [Codefend](https://www.npmjs.com/package/codefend).
 
-Supports esbuild 0.25.12 and newer within esbuild 0.25, 0.26, 0.27, and 0.28. The plugin requires Node.js 18 or newer.
+Supports esbuild 0.25.12 and newer within esbuild 0.25, 0.26, 0.27, and 0.28.
 
 ## Installation
 
