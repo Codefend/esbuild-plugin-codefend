@@ -8,7 +8,7 @@
 ![NPM](https://img.shields.io/npm/dt/esbuild-plugin-codefend)
 [![npm unpacked size](https://img.shields.io/npm/unpacked-size/esbuild-plugin-codefend)](https://www.npmjs.com/package/esbuild-plugin-codefend)
 ![NPM](https://img.shields.io/node/v/esbuild-plugin-codefend)
-![NPM](https://img.shields.io/npm/l/esbuild-plugin-codefend)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE.md)
 
 esbuild plugin for code obfuscation based on [Codefend](https://www.npmjs.com/package/codefend).
 
@@ -130,7 +130,7 @@ Follow the [esbuild example](https://codefend.github.io/docs/examples/esbuild) i
 
 - [Codefend documentation](https://codefend.github.io/docs/)
 - [All language and build examples](https://codefend.github.io/docs/examples/list)
-- [Vite plugin](https://www.npmjs.com/package/vite-plugin-codefend), [Rollup plugin](https://www.npmjs.com/package/rollup-plugin-codefend), and [Webpack plugin](https://www.npmjs.com/package/webpack-plugin-codefend)
+- [Vite plugin](https://www.npmjs.com/package/vite-plugin-codefend), [esbuild plugin](https://www.npmjs.com/package/esbuild-plugin-codefend), [Rollup plugin](https://www.npmjs.com/package/rollup-plugin-codefend), and [Webpack plugin](https://www.npmjs.com/package/webpack-plugin-codefend)
 
 ## Contributing
 
