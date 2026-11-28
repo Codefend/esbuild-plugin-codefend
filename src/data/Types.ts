@@ -12,6 +12,7 @@ export type IEsbuildCodefend = Plugin & {
 };
 
 export type IEsbuildCodefendOptions = {
+  parser?: { name?: "codeOnly" | "startWithMAndUnderscore" };
   transformation?: ICodefendTransformationOptions;
   debug?: Omit<ICodefendDebugOptions, "ignoredWarnings">;
 };
