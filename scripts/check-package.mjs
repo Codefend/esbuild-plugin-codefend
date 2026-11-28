@@ -28,32 +28,39 @@ const fixtureParent = realpathSync.native(tmpdir());
 const fixture = mkdtempSync(join(fixtureParent, "codefend-esbuild-package-"));
 const versions = [];
 try {
-  writeFileSync(join(fixture, "entry.js"), 'import { l_add } from "./math.js"; module.exports = l_add(2, 3);');
-  writeFileSync(join(fixture, "math.js"), "export function l_add(l_left, l_right) { return l_left + l_right; }");
+  writeFileSync(
+    join(fixture, "entry.js"),
+    'import { m_add } from "./math.js"; const l_external = 2; module.exports = m_add(l_external, 3);',
+  );
+  writeFileSync(join(fixture, "math.js"), "export function m_add(m_left, m_right) { return m_left + m_right; }");
   for (const name of ["esbuild-0.25", "esbuild-0.26", "esbuild-0.27", "esbuild"]) {
     const { build, version } = await import(name);
     versions.push(version);
     for (const api of [commonjs, esm]) {
-      const plugin = api.codefend({ debug: { stats: false } });
-      assert.equal(plugin.name, "esbuild-plugin-codefend");
-      assert.deepEqual(Object.keys(plugin).sort(), ["name", "setup"]);
-      const result = await build({
-        absWorkingDir: fixture,
-        entryPoints: ["entry.js"],
-        bundle: true,
-        platform: "node",
-        format: "cjs",
-        outfile: "bundle.cjs",
-        write: false,
-        logLevel: "silent",
-        plugins: [plugin],
-      });
-      assert.equal(result.outputFiles.length, 1);
-      const code = result.outputFiles[0].text;
-      assert.doesNotMatch(code, /\bl_(?:add|left|right)\b/);
-      const module = { exports: {} };
-      vm.runInNewContext(code, { module, exports: module.exports });
-      assert.equal(module.exports, 5);
+      for (const parserName of ["codeOnly", "startWithMAndUnderscore"]) {
+        const plugin = api.codefend({ parser: { name: parserName }, debug: { stats: false } });
+        assert.equal(plugin.name, "esbuild-plugin-codefend");
+        assert.deepEqual(Object.keys(plugin).sort(), ["name", "setup"]);
+        const result = await build({
+          absWorkingDir: fixture,
+          entryPoints: ["entry.js"],
+          bundle: true,
+          platform: "node",
+          format: "cjs",
+          outfile: "bundle.cjs",
+          write: false,
+          logLevel: "silent",
+          plugins: [plugin],
+        });
+        assert.equal(result.outputFiles.length, 1);
+        const code = result.outputFiles[0].text;
+        assert.doesNotMatch(code, /\bm_(?:add|left|right)\b/);
+        if (parserName === "startWithMAndUnderscore") assert.match(code, /\bl_external\b/);
+        else assert.doesNotMatch(code, /\bl_external\b/);
+        const module = { exports: {} };
+        vm.runInNewContext(code, { module, exports: module.exports });
+        assert.equal(module.exports, 5);
+      }
     }
   }
 } finally {
@@ -73,6 +80,7 @@ console.log(
     plugin: manifest.version,
     codefend: core.version,
     esbuild: versions,
+    parsers: ["codeOnly", "startWithMAndUnderscore"],
     checks: ["CommonJS", "ESM", "declarations", "source maps", "esbuild compilation/execution"],
   }),
 );

@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-codefend",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "esbuild plugin for code obfuscation based on Codefend",
   "keywords": [
     "esbuild",
@@ -65,7 +65,7 @@
     "vitest": "^5.1.2"
   },
   "dependencies": {
-    "codefend": "^3.2.1",
+    "codefend": "^3.3.0",
     "schema-utils": "^4.8.5"
   },
   "peerDependencies": {
